@@ -23,7 +23,7 @@ module.exports = () => {
         if (user) {
           console.log(`User with ID ${user._id} entered.`);
           req.body.userId = user._id;
-          req.body.firstName = user?.firstName;
+          // req.body.firstName = user?.firstName;
           req.body.emailData = user?.email;
           req.loggedInUser = user;
           req.body.authUserRole = user?.role;
