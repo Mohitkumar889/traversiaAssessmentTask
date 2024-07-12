@@ -18,6 +18,7 @@ module.exports = () => {
         lastName: validations.general.nullableString,
         email: validations.user.email,
         gender: "required|in:1,2,3",
+        address: "required",
       });
     }
     validate(v, res, next, req);

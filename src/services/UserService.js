@@ -30,11 +30,21 @@ module.exports = () => {
       page -= 1;
     }
     return new Promise(function (resolve, reject) {
-      let orm = User.find(query).select("-__v").sort({ rank: 1 });
-      if (limit) {
-        orm = orm.skip(page * limit).limit(limit);
-      }
-      orm.then(resolve).catch(reject);
+      let orm = User.aggregate([
+        {
+          $lookup: {
+            from: "userDetails",
+            localField: "_id",
+            foreignField: "userId",
+            as: "userDetails",
+          },
+        },
+        {
+          $unwind: "$userDetails",
+        },
+      ])
+        .then(resolve)
+        .catch(reject);
     });
   };
 

@@ -11,6 +11,7 @@ module.exports = () => {
         lastName: req.body.lastName,
         email: req.body.email,
         gender: req.body.gender,
+        address: req.body.address,
       };
 
       let User = await UserService().addUser(data);
